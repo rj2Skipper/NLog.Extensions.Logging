@@ -1,0 +1,397 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://nlog-project.org/nlog-config-schema.json",
+  "description": "NLog config",
+  "type": "object",
+  "properties": {
+    "NLog": {
+      "$id": "#/properties/NLog",
+      "type": "object",
+      "title": "The Nlog Schema",
+      "properties": {
+        "autoReload": {
+          "$id": "#/properties/NLog/properties/autoReload",
+          "type": "boolean",
+          "title": "The Autoreload Schema",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "throwConfigExceptions": {
+          "$id": "#/properties/NLog/properties/throwConfigExceptions",
+          "type": "boolean",
+          "title": "The Throwconfigexceptions Schema",
+          "default": false,
+          "examples": [
+            true
+          ]
+        },
+        "internalLogLevel": {
+          "$id": "#/properties/NLog/properties/internalLogLevel",
+          "type": "string",
+          "title": "The Internalloglevel Schema",
+          "default": "",
+          "examples": [
+            "info"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "internalLogFile": {
+          "$id": "#/properties/NLog/properties/internalLogFile",
+          "type": "string",
+          "title": "The Internallogfile Schema",
+          "default": "",
+          "examples": [
+            "${basedir}/internal-nlog.txt"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "extensions": {
+          "$id": "#/properties/NLog/properties/extensions",
+          "type": "array",
+          "title": "The Extensions Schema",
+          "items": {
+            "$id": "#/properties/NLog/properties/extensions/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "properties": {
+              "assembly": {
+                "$id": "#/properties/NLog/properties/extensions/items/properties/assembly",
+                "type": "string",
+                "title": "The Assembly Schema",
+                "default": "",
+                "examples": [
+                  "NLog.Extensions.Logging"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        },
+        "variables": {
+          "$id": "#/properties/NLog/properties/variables",
+          "type": "object",
+          "title": "The Variables Schema",
+          "properties": {
+            "var_logdir": {
+              "$id": "#/properties/NLog/properties/variables/properties/var_logdir",
+              "type": "string",
+              "title": "The Var_logdir Schema",
+              "default": "",
+              "examples": [
+                "c:/temp"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "default-wrapper": {
+          "$id": "#/properties/NLog/properties/default-wrapper",
+          "type": "object",
+          "title": "The Default-wrapper Schema",
+          "properties": {
+            "type": {
+              "$id": "#/properties/NLog/properties/default-wrapper/properties/type",
+              "type": "string",
+              "title": "The Type Schema",
+              "default": "",
+              "examples": [
+                "AsyncWrapper"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "overflowAction": {
+              "$id": "#/properties/NLog/properties/default-wrapper/properties/overflowAction",
+              "type": "string",
+              "title": "The Overflowaction Schema",
+              "default": "",
+              "examples": [
+                "Block"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "targets": {
+          "$id": "#/properties/NLog/properties/targets",
+          "type": "object",
+          "title": "The Targets Schema",
+          "properties": {
+            "all-file": {
+              "$id": "#/properties/NLog/properties/targets/properties/all-file",
+              "type": "object",
+              "title": "The All-file Schema",
+              "properties": {
+                "type": {
+                  "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/type",
+                  "type": "string",
+                  "title": "The Type Schema",
+                  "default": "",
+                  "examples": [
+                    "File"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "fileName": {
+                  "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/fileName",
+                  "type": "string",
+                  "title": "The Filename Schema",
+                  "default": "",
+                  "examples": [
+                    "${var_logdir}/nlog-all-${shortdate}.log"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "layout": {
+                  "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout",
+                  "type": "object",
+                  "title": "The Layout Schema",
+                  "properties": {
+                    "type": {
+                      "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout/properties/type",
+                      "type": "string",
+                      "title": "The Type Schema",
+                      "default": "",
+                      "examples": [
+                        "JsonLayout"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "Attributes": {
+                      "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout/properties/Attributes",
+                      "type": "array",
+                      "title": "The Attributes Schema",
+                      "items": {
+                        "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout/properties/Attributes/items",
+                        "type": "object",
+                        "title": "The Items Schema",
+                        "properties": {
+                          "name": {
+                            "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout/properties/Attributes/items/properties/name",
+                            "type": "string",
+                            "title": "The Name Schema",
+                            "default": "",
+                            "examples": [
+                              "timestamp"
+                            ],
+                            "pattern": "^(.*)$"
+                          },
+                          "layout": {
+                            "$id": "#/properties/NLog/properties/targets/properties/all-file/properties/layout/properties/Attributes/items/properties/layout",
+                            "type": "string",
+                            "title": "The Layout Schema",
+                            "default": "",
+                            "examples": [
+                              "${date:format=o}"
+                            ],
+                            "pattern": "^(.*)$"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "own-console": {
+              "$id": "#/properties/NLog/properties/targets/properties/own-console",
+              "type": "object",
+              "title": "The Own-console Schema",
+              "properties": {
+                "type": {
+                  "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/type",
+                  "type": "string",
+                  "title": "The Type Schema",
+                  "default": "",
+                  "examples": [
+                    "LimitingWrapper"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "interval": {
+                  "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/interval",
+                  "type": "string",
+                  "title": "The Interval Schema",
+                  "default": "",
+                  "examples": [
+                    "00:00:01"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "messageLimit": {
+                  "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/messageLimit",
+                  "type": "integer",
+                  "title": "The Messagelimit Schema",
+                  "default": 0,
+                  "examples": [
+                    100
+                  ]
+                },
+                "target": {
+                  "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/target",
+                  "type": "object",
+                  "title": "The Target Schema",
+                  "properties": {
+                    "type": {
+                      "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/target/properties/type",
+                      "type": "string",
+                      "title": "The Type Schema",
+                      "default": "",
+                      "examples": [
+                        "Console"
+                      ],
+                      "pattern": "^(.*)$"
+                    },
+                    "layout": {
+                      "$id": "#/properties/NLog/properties/targets/properties/own-console/properties/target/properties/layout",
+                      "type": "string",
+                      "title": "The Layout Schema",
+                      "default": "",
+                      "examples": [
+                        "${longdate}|${event-properties:item=EventId_Id:whenEmpty=0}|${uppercase:${level}}|${logger}|${message} ${exception:format=tostring}|${callsite}"
+                      ],
+                      "pattern": "^(.*)$"
+                    }
+                  }
+                }
+              }
+            },
+            "database": {
+              "$id": "#/properties/NLog/properties/targets/properties/database",
+              "type": "object",
+              "title": "The Database Schema",
+              "properties": {
+                "type": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/type",
+                  "type": "string",
+                  "title": "The Type Schema",
+                  "default": "",
+                  "examples": [
+                    "Database"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "dbProvider": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/dbProvider",
+                  "type": "string",
+                  "title": "The Dbprovider Schema",
+                  "default": "",
+                  "examples": [
+                    "System.Data.SqlClient"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "connectionString": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/connectionString",
+                  "type": "string",
+                  "title": "The Connectionstring Schema",
+                  "default": "",
+                  "examples": [
+                    "Data Source=database server;Initial Catalog=database;Trusted_Connection=False;User Id=AppUser;Password=AppUserPassword;"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "keepConnection": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/keepConnection",
+                  "type": "string",
+                  "title": "The Keepconnection Schema",
+                  "default": "",
+                  "examples": [
+                    "true"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "commandText": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/commandText",
+                  "type": "string",
+                  "title": "The Commandtext Schema",
+                  "default": "",
+                  "examples": [
+                    "insert into dbo.log (Guid, MachineName,Logged,Level,Message,Logger,Callsite,Exception) values (@Guid, @MachineName, @Logged, @Level, @Message, @Logger, @Callsite, @Exception);"
+                  ],
+                  "pattern": "^(.*)$"
+                },
+                "parameters": {
+                  "$id": "#/properties/NLog/properties/targets/properties/database/properties/parameters",
+                  "type": "array",
+                  "title": "The Parameters Schema",
+                  "items": {
+                    "$id": "#/properties/NLog/properties/targets/properties/database/properties/parameters/items",
+                    "type": "object",
+                    "title": "The Items Schema",
+                    "properties": {
+                      "name": {
+                        "$id": "#/properties/NLog/properties/targets/properties/database/properties/parameters/items/properties/name",
+                        "type": "string",
+                        "title": "The Name Schema",
+                        "default": "",
+                        "examples": [
+                          "@Guid"
+                        ],
+                        "pattern": "^(.*)$"
+                      },
+                      "layout": {
+                        "$id": "#/properties/NLog/properties/targets/properties/database/properties/parameters/items/properties/layout",
+                        "type": "string",
+                        "title": "The Layout Schema",
+                        "default": "",
+                        "examples": [
+                          "${guid}"
+                        ],
+                        "pattern": "^(.*)$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "rules": {
+          "$id": "#/properties/NLog/properties/rules",
+          "type": "array",
+          "title": "The Rules Schema",
+          "items": {
+            "$id": "#/properties/NLog/properties/rules/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "properties": {
+              "logger": {
+                "$id": "#/properties/NLog/properties/rules/items/properties/logger",
+                "type": "string",
+                "title": "The Logger Schema",
+                "default": "",
+                "examples": [
+                  "*"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "minLevel": {
+                "$id": "#/properties/NLog/properties/rules/items/properties/minLevel",
+                "type": "string",
+                "title": "The Minlevel Schema",
+                "default": "",
+                "examples": [
+                  "Trace"
+                ],
+                "pattern": "^(.*)$"
+              },
+              "writeTo": {
+                "$id": "#/properties/NLog/properties/rules/items/properties/writeTo",
+                "type": "string",
+                "title": "The Writeto Schema",
+                "default": "",
+                "examples": [
+                  "all-file"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
